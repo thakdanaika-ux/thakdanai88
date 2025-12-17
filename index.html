@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="th">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ภาควิชาวิศวกรรมคอมพิวเตอร์ | Computer Engineering</title>
+    <link rel="stylesheet" href="css/rmutsv.css">
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script>
+        function sa2(event) {
+            event.preventDefault();
+            Swal.fire({
+                title: "Do you want to save the changes?",
+                showDenyButton: true,
+                showCancelButton: true,
+                confirmButtonText: "Save",
+                denyButtonText: `Don't save`,
+                confirmButtonColor: "#7367f0",
+                denyButtonColor: "#ea5455",
+                cancelButtonColor: "#82868b",
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    Swal.fire("Saved!", "ระบบได้ส่งข้อมูลไปยังผู้ดูแลระบบแล้ว", "success");
+                    document.getElementById('regForm').reset();
+                } else if (result.isDenied) {
+                    Swal.fire("Changes are not saved", "ข้อมูลไม่ได้ถูกบันทึก", "info");
+                }
+            });
+        }
+
+        let slideIndex = 0;
+
+        // แก้จุดนี้: รอให้โหลดหน้าเว็บเสร็จก่อนค่อยเริ่มสไลด์
+        window.onload = function () {
+            showSlides();
+        };
+
+        function showSlides() {
+            let i;
+            let slides = document.getElementsByClassName("slide");
+
+            // ซ่อนทุกรูป
+            for (i = 0; i < slides.length; i++) {
+                slides[i].style.display = "none";
+            }
+
+            slideIndex++;
+            if (slideIndex > slides.length) { slideIndex = 1 }
+
+            // แสดงรูปปัจจุบัน
+            if (slides.length > 0) {
+                slides[slideIndex - 1].style.display = "block";
+            }
+
+            // ตั้งเวลาเปลี่ยนรูปทุก 3 วินาที
+            setTimeout(showSlides, 3000);
+        }
+    </script>
+
+</head>
+
+<body>
+    <div class="video-bg-container">
+        <video autoplay muted loop playsinline id="bgVideo">
+            <source src="/html/image/FD.mp4" type="video/mp4">
+        </video>
+        <video autoplay muted loop playsinline id="bgVideo" poster="/html/image/v.jpg">
+            <source src="/html/image/FD.mp4" type="video/mp4">
+        </video>
+
+    </div>
+
+    <header>
+        <h1>Computer Engineering</h1>
+        <p>วิศวกรรมคอมพิวเตอร์ - วิศวกรรมปัญญาประดิษฐ์</p>
+        <nav>
+            <ul>
+                <li><a href="/html/history.html">ประวัติของสาขา</a></li>
+                <li><a href="#curriculum">หลักสูตร</a></li>
+                <li><a href="/html/staff.html">ข้อมูลบุคลากร</a></li>
+                <li><a href="https://www.rmutsv.ac.th/ruts/">เข้าสู่ระบบมหาลัย</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <hr>
+    <br>
+    <section id="image-slider">
+        <div class="slider-container">
+            <div class="slide fade">
+                <img src="/html/image/v.jpg" style="width:100%">
+            </div>
+            <div class="slide fade">
+                <img src="/html/image/vv.jpg" style="width:100%">
+            </div>
+            <div class="slide fade">
+                <img src="/html/image/vvv.jpg" style="width:100%">
+            </div>
+        </div>
+    </section>
+    <main>
+        <section id="about">
+            <h2>ยินดีต้อนรับสู่ COE</h2>
+            <p>เรามุ่งเน้นการสร้างวิศวกรที่มีทักษะทั้งด้าน <strong>Hardware</strong> และ <strong>Software</strong></p>
+        </section>
+
+        <section id="curriculum">
+            <h2>หลักสูตรที่เปิดสอน</h2>
+            <ul>
+                <li>วิศวกรรมคอมพิวเตอร์ (ปริญญาตรี)</li>
+                <li>วิศวกรรมปัญญาประดิษฐ์ (ปริญญาตรี)</li>
+            </ul>
+        </section>
+
+        <section id="research">
+            <h2>แยกเป็น 3 หลักสูตร</h2>
+            <ol>
+                <li>หลักสูตรวิชาเครือข่ายคอมพิวเตอร์</li>
+                <li>หลักสูตรวิชาไอโอที IoT</li>
+                <li>หลักสูตรวิชาสารสนเทศ</li>
+            </ol>
+        </section>
+    </main>
+
+    <hr>
+
+    <footer>
+        <p>&copy; 2025 Department of Computer Engineering. All Rights Reserved.</p>
+    </footer>
+    <br>
+    <section id="registration">
+        <h2>ลงทะเบียนเรียนล่วงหน้า</h2>
+        <form id="regForm">
+            <div class="form-group">
+                <label for="fullname">ชื่อ-นามสกุล:</label>
+                <input type="text" id="fullname" placeholder="ภาษาไทยหรืออังกฤษ" required>
+            </div>
+
+            <div class="form-group">
+                <label for="email">อีเมลติดต่อ:</label>
+                <input type="email" id="email" placeholder="example@email.com" required>
+            </div>
+
+            <div class="form-group">
+                <label for="interest">สาขาที่สนใจเป็นพิเศษ:</label>
+                <select id="interest">
+                    <option value="ai">หลักสูตรวิชาเครือข่ายคอมพิวเตอร์</option>
+                    <option value="cyber">หลักสูตรวิชาไอโอที IoT</option>
+                    <option value="iot">หลักสูตรวิชาสารสนเทศ</option>
+                    <option value="dev">Full-stack Development</option>
+                </select>
+            </div>
+
+            <button type="submit" onclick="sa2(event)">ยืนยันการลงทะเบียน</button>
+        </form>
+        <div id="resultMessage"></div>
+    </section>
+
+</body>
+
+</html>
